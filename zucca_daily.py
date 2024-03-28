@@ -29,7 +29,7 @@ st.write("UPLOAD SUCCESS")
 st.markdown("#")
 st.header("WMS File Upload")
 wms_file = st.file_uploader(".xls file",type=['xls'])
-df_wms = pd.read_html(wms_file)#(wms_file, engine = 'xlrd')
+df_wms = pd.read_html(wms_file)
 df_wms=df_wms[0]
 df_wms_new=df_wms[['Marketplace','Tracking No.','Order No.','Order Date','Batch No.','Pick No.','Status','Truck No.','Pick By','Sort By','Pack By','Load By','Updated On']].copy()
 df_wms_new.rename(columns = {'Order Date':'tarikh'}, inplace = True)
