@@ -8,7 +8,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import numpy as np
 
-st.set_page_config(page_title="📋 ZUCCA Daily", page_icon="", layout="wide")
+st.set_page_config(page_title="ZUCCA Daily", page_icon="📋", layout="wide")
 
 st.title(" ZUCCA Daily Report📋")
 st.markdown("##")
