@@ -16,7 +16,7 @@ st.markdown("##")
 st.header("TikTok File Upload")
 tiktok_file = st.file_uploader(".xlsx file",type=['xlsx'])
 df_tiktok = pd.read_excel(tiktok_file)
-st.write("*If Error: try open file, save (CTRL+S) and reupload*")
+st.write("*If Error: open file, enable editing and save (CTRL+S) before reupload*")
 df_tiktok.drop([0], axis=0, inplace=True)
 df_tiktok_new=df_tiktok[['Created Time','Paid Time','RTS Time','Order ID','Shipping Provider Name','Tracking ID']].copy()
 df_tiktok_new['tarikh'] = pd.to_datetime(df_tiktok['Created Time']).dt.date
