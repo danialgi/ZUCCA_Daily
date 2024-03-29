@@ -84,6 +84,7 @@ df_wms_new = df_wms_new.drop('index', axis=1)
 
 df_final=pd.concat([tiktok_filtered, df_wms_new], axis=1)
 #df_final=df_final.sort_values(by='WMS', ascending=True)
+df_final.rename(columns = {'tarikh':'Order Date'}, inplace = True) 
 df_final.reset_index(inplace=True)
 df_final = df_final.drop('index', axis=1)
 df_final
