@@ -27,7 +27,7 @@ df_tiktok_new = df_tiktok_new.drop('index', axis=1)
 st.write("UPLOAD SUCCESS")
 
 #select date on tiktok_file
-st.write("______________________________________________________________________________________")
+st.markdown("#")
 tarikh = st.multiselect(
 "Select Date:",
 options=df_tiktok_new["tarikh"].unique()
@@ -40,7 +40,7 @@ tiktok_filtered=tiktok_filtered.sort_values(by='Tracking ID', ascending=True)
 tiktok_filtered.reset_index(inplace=True)
 tiktok_filtered = tiktok_filtered.drop('index', axis=1)
 
-st.markdown("#")
+st.write("______________________________________________________________________________________")
 st.header("WMS File Upload")
 wms_file = st.file_uploader(".xls file",type=['xls'])
 df_wms = pd.read_html(wms_file)
@@ -58,8 +58,6 @@ df_wms_new=df_wms_new.sort_values(by='Tracking No.', ascending=True)
 df_wms_new.reset_index(inplace=True)
 df_wms_new = df_wms_new.drop('index', axis=1)
 st.write("UPLOAD SUCCESS")
-
-#select date on tiktok_file
 
 st.markdown("#")
 st.write("")
