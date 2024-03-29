@@ -8,9 +8,9 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import numpy as np
 
-st.set_page_config(page_title="Tiktok Report", page_icon="🎶", layout="wide")
+st.set_page_config(page_title="Tiktok Report", page_icon="🚚", layout="wide")
 
-st.title("Tiktok Report📋")
+st.title("Genuine Inside (M) Sdn. Bhd. - Tiktok Report📋")
 st.markdown("##")
 
 st.header("TikTok File Upload")
