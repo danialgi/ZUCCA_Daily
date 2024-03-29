@@ -10,7 +10,7 @@ import numpy as np
 
 st.set_page_config(page_title="Tiktok Report", page_icon="🚚", layout="wide")
 
-st.title("🚚 Genuine Inside (M) Sdn. Bhd. - Tiktok Report📋")
+st.title("🚚 Genuine Inside (M) Sdn. Bhd. - TIKTOK Report📋")
 st.markdown("##")
 
 st.header("TikTok File Upload")
