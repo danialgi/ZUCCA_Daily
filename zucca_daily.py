@@ -93,23 +93,18 @@ highlight = [False]
 style_row_mapping = ['background:grey' if x in highlight else 'background:white' for x in df_final.WMS]
 df_highlighted = df_final.style.apply(lambda x: style_row_mapping , axis = 0)
 
-def to_excel(df):
-    output = io.BytesIO()
-    with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
-        df.to_excel(writer, index=False, sheet_name='Sheet1')
-        writer.save()
-    processed_data = output.getvalue()
-    return processed_data
+@st.cache_data
+def convert_df(df):
+    # IMPORTANT: Cache the conversion to prevent computation on every rerun
+    return df.to_csv().encode('utf-8')
 
-# Convert DataFrame to Excel file in memory
-df_excel = to_excel(df_final)
+csv = convert_df(df_final)
 
-# Create the download button
 st.download_button(
-    label="Download Excel file",
-    data=df_excel,
-    file_name="dataframe.xlsx",
-    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    label="Download Data",
+    data=csv,
+    file_name='ZUCCA Daily Report.csv',
+    mime='text/csv',
 )
 
 #############################
