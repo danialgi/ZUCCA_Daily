@@ -7,6 +7,10 @@ import os
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import numpy as np
+from datetime import datetime
+from io import BytesIO
+
+today_date = datetime.now().strftime('%Y-%m-%d')
 
 st.set_page_config(page_title="TikTok Report", page_icon="🚚", layout="wide")
 
@@ -93,28 +97,27 @@ highlight = [False]
 style_row_mapping = ['background:grey' if x in highlight else 'background:white' for x in df_final.WMS]
 df_highlighted = df_final.style.apply(lambda x: style_row_mapping , axis = 0)
 
-@st.cache_data
-def convert_df(df):
-    # IMPORTANT: Cache the conversion to prevent computation on every rerun
-    return df.to_csv().encode('utf-8')
+# Function to write DataFrames to an Excel file in memory
+def dfs_to_excel(df_list, sheet_list):
+    output = BytesIO()
+    with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
+        for dataframe, sheet in zip(df_list, sheet_list):
+            dataframe.to_excel(writer, sheet_name=sheet, index=False)
+    output.seek(0)
+    return output
 
-csv = convert_df(df_final)
+df_list = [df_final]
+sheet_list = ['Sheet1']
 
+# Convert DataFrames to Excel in memory
+excel_file = dfs_to_excel(df_list, sheet_list)
+
+# Streamlit download button
 st.download_button(
-    label="Download Data",
-    data=csv,
-    file_name='ZUCCA Daily Report.csv',
-    mime='text/csv',
+    label="Download Excel file",
+    data=excel_file,
+    file_name=f"TikTok_Report_{today_date}.xlsx",
+    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 )
-
-#############################
-#def custom_style(df_final):
-
-    #color = 'white'
-    #if df_final.columns('WMS')== False:
-        #color = 'red'
-
-    #return ['background-color: %s' % color]*len(row.values)
-
 #df_final=df_final.style.apply(custom_style, axis=1)
 #df_final
