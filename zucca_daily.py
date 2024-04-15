@@ -23,6 +23,7 @@ df_tiktok = pd.read_excel(tiktok_file)
 st.write("*If Error: open file, enable editing and save (CTRL+S) before reupload*")
 df_tiktok.drop([0], axis=0, inplace=True)
 df_tiktok_new=df_tiktok[['Created Time','Paid Time','RTS Time','Order ID','Shipping Provider Name','Tracking ID']].copy()
+df_tiktok_new
 df_tiktok_new['tarikh'] = pd.to_datetime(df_tiktok['Created Time']).dt.date
 df_tiktok_new = df_tiktok_new.drop_duplicates(subset='Order ID', keep="first")
 df_tiktok_new=df_tiktok_new.sort_values(by='tarikh', ascending=True)
